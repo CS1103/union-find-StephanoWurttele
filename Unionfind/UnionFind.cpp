@@ -1,42 +1,41 @@
-#include <UnionFind.h>
+#include "UnionFind.h"
 
 using namespace std;
 
-Node::Node(int _id, int_group):id(_id),group(_group){}
+Node::Node(int _id, int _group):id(_id),group(_group){}
 
 UnionFind::UnionFind(int N):elements(N){
-	for(int i=0;i<N;i++){
-		Nodes.pushback(new Node(i,i));
+	for(int i=0;i<elements;i++){
+		Nodes.push_back(new Node(i,i));
 	}
 }
-bool UnionFind::Find(int a){
-	int temproot=Nodes[a].group;
+int UnionFind::Find(int a){
+	int temproot=Nodes[a]->group;
 	if (a<elements){
-		if(a!=Nodes[a].group){
-			temproot=Find(Nodes[a].group());
+		if(a!=Nodes[a]->group){
+			temproot=Find(Nodes[a]->group);
 		}
 		return temproot;
 		}
-	}
 	else{
-		cout<<"Not in
+		cout<<"Not in";
 		return false;
 	}
 }
 
 void UnionFind::Union(int a, int b){
-	if (a<N & b<N){
-		Nodes[a].group=Nodes[b];
+	if (a<elements & b<elements){
+		Nodes[a]->group=Nodes[b]->id;
 	}
 }
 
 void UnionFind::print(){
 	for(int i=0;i<elements;i++){
-		cout<<Nodes[i].id<<" ";
+		cout<<Nodes[i]->id<<" ";
 	}
 	cout<<endl;
 	for (int i=0;i<elements;i++){
-		cout<<Nodes[i].group<<" ";
+		cout<<Nodes[i]->group<<" ";
 	}
 }
 
